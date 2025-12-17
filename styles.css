@@ -1,0 +1,48 @@
+:root{
+  --bg1:#FFF0F5; --bg2:#F0FFFF;
+  --accent:#ff6b81; --paper:#fffefc; --shadow: rgba(11,16,40,0.18);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif}
+body{
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+  display:flex;align-items:center;justify-content:center;padding:28px;color:#102027;
+}
+.wrap{width:100%;max-width:540px;text-align:center}
+.title{margin:0 0 18px;font-weight:600;color:#3b3b4f}
+.hint{color:#485160;margin-top:14px}
+
+/* Envelope */
+.envelope{width:320px;height:220px;margin:0 auto;perspective:1000px;cursor:pointer;outline:none}
+.shell{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 600ms ease}
+.flap{
+  position:absolute;left:0;right:0;top:0;height:62%;background:linear-gradient(180deg,#ffeef2,#ffdfe6);
+  border-radius:10px 10px 0 0;box-shadow:0 8px 22px var(--shadow);transform-origin:top center;
+  transform:rotateX(0deg);transition:transform 700ms cubic-bezier(.2,.9,.3,1)
+}
+.body{
+  position:absolute;left:0;right:0;bottom:0;top:38%;background:linear-gradient(180deg,#fff,#fffaf6);
+  border-radius:0 0 12px 12px;padding:12px;display:flex;align-items:flex-start;justify-content:center;
+  box-shadow:inset 0 3px 8px rgba(0,0,0,0.03)
+}
+.letter{
+  width:88%;height:76%;background:linear-gradient(180deg,#ffffff,#fff7f2);border-radius:8px;
+  box-shadow:0 12px 30px rgba(16,24,40,0.08);transform:translateY(10px);opacity:0;
+  transition:transform 700ms ease,opacity 700ms ease;
+  display:flex;align-items:center;justify-content:center;padding:14px;
+}
+.letter-inner{text-align:center;white-space:pre-wrap}
+.letter h2{margin:0 0 8px;color:var(--accent)}
+.letter p{margin:0;color:#2b3440;font-size:1rem;line-height:1.35}
+
+/* Open state */
+.envelope.open .flap{transform:rotateX(-180deg)}
+.envelope.open .letter{transform:translateY(-14px);opacity:1}
+
+/* Small focus style */
+.envelope:focus{box-shadow:0 10px 30px rgba(0,0,0,0.08);border-radius:12px}
+
+/* Responsive */
+@media (max-width:380px){
+  .envelope{width:92vw;height:200px}
+}
